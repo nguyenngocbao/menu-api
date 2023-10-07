@@ -18,6 +18,7 @@ define('POST', 'POST');
 
 return [
     [GET, '', [IndexController::class, 'index']],
+    [POST, '/verify', [IndexController::class, 'verify']],
     [POST, '/store/uuid', [StoreController::class, 'uuid']],
     [POST, '/store/get', [StoreController::class, 'get']],
     [POST, '/store/city', [StoreController::class, 'city']],
@@ -25,6 +26,7 @@ return [
     [POST, '/store/ward', [StoreController::class, 'ward']],
     [POST, '/store/getByAdmin', [StoreController::class, 'getStoreByAdmin']],
     [POST, '/store/update', [StoreController::class, 'update']],
+    [POST, '/store/insert', [StoreController::class, 'insert']],
 
     [POST, '/menu/createAll', [MenuController::class, 'createAll']],
 

@@ -11,6 +11,7 @@ class StoreRepo extends BaseRepos
         'address' ,
         'ward_id' ,
         'district_id' ,
+        'template_id' ,
         'city_id' ,
         'store_type' ,
         'wifi_pass' ,

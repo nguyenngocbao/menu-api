@@ -20,6 +20,19 @@ class StoreController
         'status'  ];
 
 
+    public function insertAction(){
+        $data = data_json();
+        $store = $data['store'];
+        $uuid = $data['uuid'];
+
+
+        $storeRepo = new StoreRepo();
+        $id = $storeRepo-> update($store);
+
+        db()->insert('device_store', ['device_uuid' => $uuid, 'store_id' => $id,'status' => 1]);
+        echo_json_success(['store_id' => $id, 'uuid' => $uuid]);
+    }
+
     public function updateAction(){
         $data = data_json();
         $storeRepo = new StoreRepo();
@@ -32,6 +45,7 @@ class StoreController
         $res = [];
 
         if ($uuid = $data['uuid']){
+
             $row = db_get("device_store",'*',["device_uuid" => $uuid, 'status' => 1]);
             if ($row){
                 $res['store'] = $this->getStore($row['store_id']);
@@ -115,7 +129,7 @@ class StoreController
     }
 
     private function loadCity(){
-        return db_select('city',"*");
+        return db_select('city',"*",['ORDER' => ['sort']]);
     }
 
     private function loadDistrictByCity($city_id){
